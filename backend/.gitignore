@@ -42,3 +42,5 @@ ENV/
 !alembic/
 !alembic.ini
 !app/
+
+POSTMAN_DOCUMENTATION.md
