@@ -1,0 +1,44 @@
+### --- PYTHON CORE --- ###
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+*.egg
+
+### --- ENTORNOS VIRTUALES --- ###
+# Ignora la carpeta venv que veo en tu imagen
+venv/
+.venv/
+env/
+ENV/
+
+### --- CONFIGURACIÓN SENSIBLE (CRÍTICO) --- ###
+# No subas tus contraseñas y llaves secretas
+.env
+# Ignora el archivo accidental que creaste con el comando de pip
+=2.0
+
+### --- BASE DE DATOS LOCAL --- ###
+# Si usas SQLite localmente para pruebas
+*.sqlite3
+*.db
+
+### --- IDEs Y EDITORES --- ###
+.vscode/
+.idea/
+*.swp
+*.swo
+
+### --- EXCEPCIONES (LO QUE SÍ DEBE SUBIRSE) --- ###
+# Aseguramos que los archivos de Alembic NO se ignoren
+!alembic/
+!alembic.ini
+!app/
