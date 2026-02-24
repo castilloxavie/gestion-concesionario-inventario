@@ -1,4 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 from app.crud.user import (
     get_all_users, 
     get_user_email, 
@@ -11,7 +13,6 @@ from app.crud.user import (
 from app.databases.models.user import User
 from app.databases.models.role import Role
 from app.schemas.user import UserCreate, UserUpdate
-from sqlalchemy import select
 from fastapi import HTTPException, status
 from app.core.security import hash_password
 import uuid
@@ -50,7 +51,24 @@ async def register_seed_admin(db: AsyncSession, email: str, password: str):
         is_deleted=False
     )
     
-    return await create_user(db, user)
+    # Agregar el usuario a la sesión
+    db.add(user)
+    # Flush para obtener el ID sin hacer commit completo
+    await db.flush()
+    
+    # Guardar el ID antes de cualquier operación
+    user_id = user.id
+    
+    # Commit para persistir
+    await db.commit()
+    
+    # Obtener el usuario con la relación role cargada (eager loading)
+    result = await db.execute(
+        select(User)
+        .where(User.id == user_id)
+        .options(selectinload(User.role))
+    )
+    return result.scalar_one()
 
 
 async def register_user(
@@ -102,16 +120,50 @@ async def register_user(
         created_by=created_by_id
     )
     
-    return await create_user(db, user)
+    # Agregar el usuario a la sesión
+    db.add(user)
+    # Flush para obtener el ID sin hacer commit completo
+    await db.flush()
+    
+    # Guardar el ID antes de cualquier operación
+    user_id = user.id
+    
+    # Commit para persistir
+    await db.commit()
+    
+    # Obtener el usuario con la relación role cargada (eager loading)
+    result = await db.execute(
+        select(User)
+        .where(User.id == user_id)
+        .options(selectinload(User.role))
+    )
+    return result.scalar_one()
 
 
 async def get_users(db: AsyncSession, skip: int = 0, limit: int = 100):
     """
     obtiene todos los usuarios (excluyendo eliminados).
     """
+    from app.schemas.user import UserResponse
+    
     users = await get_all_users(db, skip=skip, limit=limit)
     total = await get_total_users(db)
-    return {"users": users, "total": total}
+    
+    # Convertir objetos User a UserResponse con el role como string
+    users_response = []
+    for user in users:
+        users_response.append(
+            UserResponse(
+                id=user.id,
+                uuid=user.uuid,
+                email=user.email,
+                is_active=user.is_active,
+                role=user.role.name,  # Convertir el objeto Role a string
+                created_at=user.created_at
+            )
+        )
+    
+    return {"users": users_response, "total": total}
 
 
 async def get_user_by_id(db: AsyncSession, user_id: int):
