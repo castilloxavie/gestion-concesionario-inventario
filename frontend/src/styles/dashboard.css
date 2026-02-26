@@ -1,0 +1,751 @@
+/* ==========================================
+   ESTILOS DASHBOARD - Gestión de Solicitudes
+   Diseño basado en mockup institucional
+   ========================================== */
+
+/* Variables CSS */
+:root {
+    --blue1: #00249C;
+    --blue2: #40CEE4;
+    --grey1: #C5C5C5;
+    --grey2: #666666;
+    --grey3: #888888;
+    --grey-light: #e0e0e0;
+    --red1: #C6007E;
+    --red2: #E280BE;
+    --red3: #E280BE;  /* Rosa institucional */
+    --white: #ffffff;
+    --success: #40CEE4;
+    --danger: #C6007E;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container principal del dashboard */
+.dashboard-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Marca de agua */
+.dashboard-watermark {
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 450px;
+    height: 450px;
+    opacity: 0.06;
+    z-index: 0;
+    pointer-events: none;
+    object-fit: contain;
+    transform: rotate(-15deg);
+}
+
+/* Main Content */
+.dashboard-main {
+    display: flex;
+    flex: 1;
+    padding: 30px;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================
+   PANEL IZQUIERDO - Filtros y Formulario
+   ========================================== */
+
+.dashboard-sidebar {
+    width: 320px;
+    flex-shrink: 0;
+}
+
+.dashboard-card {
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.dashboard-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue1);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dashboard-card-title .icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--grey2);
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Formulario */
+.dashboard-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.dashboard-form-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dashboard-form-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--grey2);
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.dashboard-input {
+    flex: 1;
+    padding: 12px 18px;
+    font-size: 14px;
+    color: var(--grey2);
+    background-color: var(--white);
+    border: 1.5px solid var(--grey-light);
+    border-radius: 50px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.dashboard-input:focus {
+    border-color: var(--blue2);
+    box-shadow: 0 0 0 3px rgba(64, 206, 228, 0.15);
+}
+
+.dashboard-input::placeholder {
+    color: var(--grey1);
+}
+
+.dashboard-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue1) 0%, var(--red1) 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dashboard-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 36, 156, 0.25);
+}
+
+.dashboard-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================
+   PANEL DERECHO - Tabla de Datos
+   ========================================== */
+
+.dashboard-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboard-header-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--blue1);
+}
+
+.dashboard-btn-new {
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue1) 0%, var(--red1) 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dashboard-btn-new:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 36, 156, 0.25);
+}
+
+/* Tabla */
+.dashboard-table-container {
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 15px 15px;
+}
+
+.dashboard-table thead tr {
+    background: transparent;
+}
+
+.dashboard-table th {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: var(--red2);
+}
+
+.dashboard-table th:first-child {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.dashboard-table th:last-child {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.dashboard-table td {
+    padding: 14px 20px;
+    font-size: 14px;
+    color: var(--grey2);
+    background-color: var(--white);
+    /* Borde rosado institucional debajo de cada fila */
+    border-bottom: 3px solid var(--red3);
+}
+
+.dashboard-table tbody tr {
+    background-color: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-table tbody tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+
+.dashboard-table tbody tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+}
+
+.dashboard-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.dashboard-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+.dashboard-table tr:hover {
+    background-color: rgba(64, 206, 228, 0.05);
+}
+
+/* Acciones - integradas en la columna de aspirante */
+.dashboard-actions-inline {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.dashboard-btn-action {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.dashboard-btn-action:hover {
+    transform: scale(1.1);
+}
+
+.dashboard-btn-action.dashboard-btn-approve {
+    background-color: var(--blue2);
+    color: var(--white);
+}
+
+.dashboard-btn-action.dashboard-btn-reject {
+    background-color: var(--red1);
+    color: var(--white);
+}
+
+/* ==========================================
+   FOOTER - Branding
+   ========================================== */
+
+.dashboard-footer {
+    padding: 20px;
+    background-color: var(--white);
+    border-top: 1px solid var(--grey-light);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.dashboard-brand {
+    font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.dashboard-brand .motion {
+    color: var(--blue1);
+}
+
+.dashboard-brand .o {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: var(--blue1);
+    border-radius: 50%;
+    position: relative;
+    margin: 0 2px;
+}
+
+.dashboard-brand .o::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 3px;
+    background-color: var(--red1);
+    transform: translate(-50%, -50%) rotate(-45deg);
+    border-radius: 2px;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 1024px) {
+    .dashboard-main {
+        flex-direction: column;
+    }
+    
+    .dashboard-sidebar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-main {
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .dashboard-header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .dashboard-table th,
+    .dashboard-table td {
+        padding: 12px;
+        font-size: 13px;
+    }
+    
+    .dashboard-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.dashboard-table-container {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Mensajes */
+.dashboard-error {
+    background-color: #fff0f5;
+    color: var(--red1);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    border: 1px solid var(--red2);
+}
+
+.dashboard-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    border: 1px solid #a5d6a7;
+}
+
+/* Loading */
+.dashboard-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+    font-size: 16px;
+    color: var(--grey2);
+}
+
+/* ==========================================
+   DASHBOARD ADMINISTRADOR
+   ========================================== */
+
+.dashboard-admin-main {
+    flex: 1;
+    padding: 40px;
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Header de Bienvenida */
+.dashboard-admin-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.dashboard-admin-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--blue1);
+    margin-bottom: 15px;
+}
+
+.dashboard-admin-welcome {
+    font-size: 18px;
+    color: var(--grey2);
+    margin-bottom: 10px;
+}
+
+.dashboard-admin-email {
+    color: var(--blue1);
+    font-weight: 600;
+}
+
+.dashboard-admin-role {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.dashboard-admin-role-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: linear-gradient(135deg, var(--blue1) 0%, var(--red1) 100%);
+    color: var(--white);
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Cards de Gestión */
+.dashboard-admin-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.dashboard-admin-card {
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    text-align: center;
+}
+
+.dashboard-admin-card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--grey-light);
+    border-radius: 50%;
+}
+
+.dashboard-admin-card-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.dashboard-admin-card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--blue1);
+    margin-bottom: 15px;
+}
+
+.dashboard-admin-card-desc {
+    font-size: 14px;
+    color: var(--grey2);
+    margin-bottom: 20px;
+}
+
+.dashboard-admin-card-list {
+    text-align: left;
+    list-style: none;
+    margin-bottom: 25px;
+    padding: 0;
+}
+
+.dashboard-admin-card-list li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: var(--grey2);
+    font-size: 14px;
+}
+
+.dashboard-admin-card-list li::before {
+    content: "•";
+    color: var(--blue2);
+    font-weight: bold;
+    position: absolute;
+    left: 5px;
+}
+
+.dashboard-admin-card-list li.completed {
+    color: var(--success);
+}
+
+.dashboard-admin-card-list li.completed::before {
+    content: "✓";
+    color: var(--success);
+}
+
+.dashboard-admin-card-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Botones */
+.dashboard-admin-btn {
+    padding: 14px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.dashboard-admin-btn-primary {
+    background: linear-gradient(135deg, var(--blue1) 0%, var(--red1) 100%);
+    color: var(--white);
+}
+
+.dashboard-admin-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 36, 156, 0.25);
+}
+
+.dashboard-admin-btn-secondary {
+    background-color: transparent;
+    color: var(--blue1);
+    border: 2px solid var(--blue1);
+}
+
+.dashboard-admin-btn-secondary:hover {
+    background-color: var(--blue1);
+    color: var(--white);
+}
+
+.dashboard-admin-btn-accent {
+    background: linear-gradient(135deg, var(--blue1) 0%, var(--red1) 100%);
+    color: var(--white);
+}
+
+.dashboard-admin-btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 36, 156, 0.25);
+}
+
+.dashboard-admin-btn-cancel {
+    background-color: transparent;
+    color: var(--red1);
+    border: 2px solid var(--red1);
+}
+
+.dashboard-admin-btn-cancel:hover {
+    background-color: var(--red1);
+    color: var(--white);
+}
+
+.dashboard-admin-btn-logout {
+    background-color: transparent;
+    color: var(--grey2);
+    border: 2px solid var(--grey1);
+    padding: 12px 30px;
+}
+
+.dashboard-admin-btn-logout:hover {
+    background-color: var(--red1);
+    border-color: var(--red1);
+    color: var(--white);
+}
+
+/* Formulario de Crear Usuario */
+.dashboard-admin-form {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.dashboard-admin-form-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--blue1);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.dashboard-admin-form-group {
+    margin-bottom: 15px;
+}
+
+.dashboard-admin-form-group .dashboard-input {
+    width: 100%;
+}
+
+.dashboard-admin-form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.dashboard-admin-form-buttons .dashboard-admin-btn {
+    flex: 1;
+}
+
+/* Botón Cerrar Sesión */
+.dashboard-admin-logout {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid var(--grey-light);
+}
+
+/* ==========================================
+   RESPONSIVE - Dashboard Administrador
+   ========================================== */
+
+@media (max-width: 768px) {
+    .dashboard-admin-main {
+        padding: 20px;
+    }
+    
+    .dashboard-admin-title {
+        font-size: 24px;
+    }
+    
+    .dashboard-admin-welcome {
+        font-size: 16px;
+    }
+    
+    .dashboard-admin-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .dashboard-admin-card {
+        padding: 20px;
+    }
+    
+    .dashboard-admin-card-buttons {
+        flex-direction: column;
+    }
+    
+    .dashboard-admin-form-buttons {
+        flex-direction: column;
+    }
+}

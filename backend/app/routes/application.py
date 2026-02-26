@@ -9,6 +9,8 @@ from app.services.application_service import (
     update_application_service,
     delete_application_service
 )
+from app.core.dependencies import get_current_user, get_current_admin_user
+from app.databases.models.user import User
 
 router = APIRouter(prefix="/applications", tags=["Applications"])
 
@@ -21,7 +23,7 @@ async def list_applications(
 ):
     """
     Lista todas las aplicaciones (CRUD - Read).
-    Accessible públicamente sin autenticación.
+    Sin autenticación requerida.
     """
     return await get_applications(db, skip=skip, limit=limit)
 
@@ -33,7 +35,7 @@ async def get_application(
 ):
     """
     Obtiene una aplicación por su ID (CRUD - Read).
-    Accessible públicamente sin autenticación.
+    Sin autenticación requerida.
     """
     application = await get_application_by_id_service(db, application_id)
     return ApplicationResponse(
@@ -55,7 +57,7 @@ async def create_application_endpoint(
 ):
     """
     Crea una nueva aplicación (CRUD - Create).
-    Accessible públicamente sin autenticación.
+    Sin autenticación requerida.
     """
     application = await create_application_service(
         db=db,
@@ -82,7 +84,7 @@ async def update_application_endpoint(
 ):
     """
     Actualiza una aplicación (CRUD - Update).
-    Accessible públicamente sin autenticación.
+    Sin autenticación requerida.
     """
     application = await update_application_service(db, application_id, application_data)
     return ApplicationResponse(
@@ -101,9 +103,10 @@ async def update_application_endpoint(
 async def delete_application_endpoint(
     application_id: int,
     db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_admin_user)
 ):
     """
     Elimina una aplicación (CRUD - Delete).
-    Accessible públicamente sin autenticación.
+    SOLO administradores pueden eliminar.
     """
     return await delete_application_service(db, application_id)

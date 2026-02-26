@@ -29,6 +29,7 @@ class UserResponse(BaseModel):
     uuid: str
     email: EmailStr
     is_active: bool
+    is_seed: bool = False
     role: str
     created_at: datetime
     

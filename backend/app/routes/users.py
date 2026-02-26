@@ -3,9 +3,29 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.schemas.user import UserResponse, UserListResponse, UserUpdate
 from app.databases.seccion import get_db
 from app.services.user_service import get_users, get_user_by_id, update_user, delete_user
-from app.core.dependencies import get_current_admin_user
+from app.core.dependencies import get_current_admin_user, get_current_user
 
 router = APIRouter(prefix="/users", tags=["Users"])
+
+
+@router.get("/me", response_model=UserResponse)
+async def get_current_user_profile(
+    db: AsyncSession = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
+    """
+    Obtiene el perfil del usuario actualmente autenticado.
+    Cualquier usuario logueado puede acceder a su propio perfil.
+    """
+    return UserResponse(
+        id=current_user.id,
+        uuid=current_user.uuid,
+        email=current_user.email,
+        is_active=current_user.is_active,
+        is_seed=current_user.is_seed,
+        role=current_user.role.name,
+        created_at=current_user.created_at
+    )
 
 
 @router.get("/", response_model=UserListResponse)
@@ -36,6 +56,7 @@ async def get_user(
         uuid=user.uuid,
         email=user.email,
         is_active=user.is_active,
+        is_seed=user.is_seed,
         role=user.role.name,
         created_at=user.created_at
     )
@@ -57,6 +78,7 @@ async def update_user_endpoint(
         uuid=user.uuid,
         email=user.email,
         is_active=user.is_active,
+        is_seed=user.is_seed,
         role=user.role.name,
         created_at=user.created_at
     )

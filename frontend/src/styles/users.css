@@ -1,0 +1,409 @@
+/* ==========================================
+   ESTILOS PÁGINA DE USUARIOS
+   Diseño basado en mockup institucional
+   ========================================== */
+
+/* Variables CSS */
+:root {
+    --blue1: #00249C;
+    --blue2: #40CEE4;
+    --grey1: #C5C5C5;
+    --grey2: #666666;
+    --grey3: #888888;
+    --grey-light: #e0e0e0;
+    --red1: #C6007E;
+    --red2: #E280BE;
+    --red3: #E280BE;  /* Rosa institucional */
+    --white: #ffffff;
+    --success: #40CEE4;
+    --danger: #C6007E;
+}
+
+.users-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Header */
+.users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px 30px;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--grey-light);
+}
+
+.users-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--blue1);
+}
+
+.users-back-btn {
+    padding: 10px 20px;
+    background-color: transparent;
+    color: var(--grey2);
+    border: 2px solid var(--grey1);
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.users-back-btn:hover {
+    background-color: var(--blue1);
+    border-color: var(--blue1);
+    color: var(--white);
+}
+
+/* Main Content */
+.users-main {
+    flex: 1;
+    padding: 0 30px 30px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Error Message */
+.users-error {
+    background-color: #fff0f5;
+    color: var(--red1);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    border: 1px solid var(--red2);
+}
+
+/* Botón Nuevo Usuario */
+.users-new-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue1) 0%, var(--red1) 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.users-new-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 36, 156, 0.25);
+}
+
+/* Tabla de Usuarios */
+.users-table-container {
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.users-table thead tr {
+    background: transparent;
+}
+
+.users-table th {
+    padding: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: var(--red2);
+}
+
+.users-table th:first-child {
+    border-top-left-radius: 0;
+}
+
+.users-table th:last-child {
+    border-top-right-radius: 0;
+}
+
+.users-table td {
+    padding: 14px 20px;
+    font-size: 14px;
+    color: var(--grey2);
+    background-color: var(--white);
+    text-align: center;
+    /* Borde rosado institucional debajo de cada fila */
+    border-bottom: 3px solid var(--red3);
+}
+
+.users-table tbody tr {
+    background-color: var(--white);
+    transition: all 0.3s ease;
+}
+
+.users-table tbody tr:hover {
+    background-color: rgba(64, 206, 228, 0.05);
+}
+
+/* Estado */
+.users-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.users-status-active {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.users-status-inactive {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* Botones de Acción */
+.users-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.users-action-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.users-action-btn-edit {
+    background-color: var(--blue2);
+    color: var(--white);
+}
+
+.users-action-btn-edit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(64, 206, 228, 0.4);
+}
+
+.users-action-btn-toggle {
+    background-color: #FF9800;
+    color: var(--white);
+}
+
+.users-action-btn-toggle:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4);
+}
+
+.users-action-btn-delete {
+    background-color: var(--red1);
+    color: var(--white);
+}
+
+.users-action-btn-delete:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(198, 0, 126, 0.4);
+}
+
+/* Modal */
+.users-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.users-modal {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.users-modal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blue1);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.users-form-group {
+    margin-bottom: 18px;
+}
+
+.users-form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--grey2);
+    margin-bottom: 8px;
+}
+
+.users-form-input {
+    width: 100%;
+    padding: 12px 18px;
+    font-size: 14px;
+    color: var(--grey2);
+    background-color: var(--white);
+    border: 1.5px solid var(--grey-light);
+    border-radius: 50px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.users-form-input:focus {
+    border-color: var(--blue2);
+    box-shadow: 0 0 0 3px rgba(64, 206, 228, 0.15);
+}
+
+.users-form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.users-form-checkbox input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.users-form-checkbox label {
+    font-size: 14px;
+    color: var(--grey2);
+    cursor: pointer;
+}
+
+.users-form-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.users-form-btn {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.users-form-btn-submit {
+    background: linear-gradient(135deg, var(--blue1) 0%, var(--red1) 100%);
+    color: var(--white);
+}
+
+.users-form-btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 36, 156, 0.25);
+}
+
+.users-form-btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.users-form-btn-cancel {
+    background-color: transparent;
+    color: var(--red1);
+    border: 2px solid var(--red1);
+}
+
+.users-form-btn-cancel:hover {
+    background-color: var(--red1);
+    color: var(--white);
+}
+
+/* Loading */
+.users-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    font-size: 16px;
+    color: var(--grey2);
+}
+
+/* Footer */
+.users-footer {
+    padding: 20px;
+    background-color: var(--white);
+    border-top: 1px solid var(--grey-light);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+    .users-header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    
+    .users-main {
+        padding: 0 15px 15px;
+    }
+    
+    .users-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .users-table th,
+    .users-table td {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+    
+    .users-actions {
+        flex-direction: column;
+    }
+    
+    .users-modal {
+        padding: 20px;
+        margin: 15px;
+    }
+}

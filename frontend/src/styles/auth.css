@@ -1,0 +1,387 @@
+/* ==========================================
+   ESTILOS AUTH - Login & Register
+   Pantalla dividida con diseño institucional
+   ========================================== */
+
+/* Variables CSS */
+:root {
+    --blue1: #00249C;
+    --blue2: #40CEE4;
+    --grey1: #C5C5C5;
+    --red2: #E280BE;
+    --red1: #C6007E;
+    --white: #ffffff;
+    --light-bg: #f5f5f5;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container principal */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Marca de agua elegante */
+.auth-watermark {
+    position: absolute;
+    bottom: -80px;
+    right: -80px;
+    width: 450px;
+    height: 450px;
+    opacity: 0.06;
+    z-index: 0;
+    pointer-events: none;
+    object-fit: contain;
+    transform: rotate(-15deg);
+}
+
+/* Header */
+.auth-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 12px 30px;
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.auth-logo {
+    width: 56px;
+    height: 55px;
+    object-fit: contain;
+}
+
+/* Main Content */
+.auth-main {
+    display: flex;
+    flex: 1;
+    margin-top: 80px;
+    min-height: calc(100vh - 80px - 60px);
+}
+
+/* Lado izquierdo - Ilustración */
+.auth-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--white) 0%, #f8f9ff 100%);
+}
+
+.auth-illustration {
+    max-width: 500px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.auth-welcome-text {
+    text-align: center;
+}
+
+.auth-welcome-text h1 {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--blue1);
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.auth-welcome-text h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--blue1);
+    letter-spacing: 2px;
+}
+
+/* Lado derecho - Formulario */
+.auth-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: var(--white);
+}
+
+.auth-form-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 45px 40px;
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 36, 156, 0.08);
+    border: 1px solid rgba(0, 36, 156, 0.05);
+}
+
+.auth-form-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--blue1);
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.auth-form-subtitle {
+    font-size: 14px;
+    color: var(--grey1);
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+/* Inputs */
+.auth-input-group {
+    margin-bottom: 22px;
+}
+
+.auth-input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blue1);
+    margin-bottom: 8px;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 15px;
+    color: #333;
+    background-color: var(--white);
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.auth-input:focus {
+    border-color: var(--blue2);
+    box-shadow: 0 0 0 4px rgba(64, 206, 228, 0.15);
+}
+
+.auth-input::placeholder {
+    color: var(--grey1);
+}
+
+/* Botón Submit */
+.auth-submit-btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue1) 0%, var(--red1) 100%);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.auth-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 36, 156, 0.25);
+}
+
+.auth-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Messages */
+.auth-error {
+    background-color: #fff0f5;
+    color: var(--red1);
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid var(--red2);
+    font-size: 14px;
+}
+
+.auth-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #a5d6a7;
+    font-size: 14px;
+}
+
+/* Links */
+.auth-link-text {
+    text-align: center;
+    margin-top: 28px;
+    font-size: 14px;
+    color: #666;
+}
+
+.auth-link {
+    color: var(--blue2);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.auth-link:hover {
+    color: var(--red1);
+}
+
+/* Footer */
+.auth-footer {
+    padding: 18px;
+    background-color: var(--white);
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+.auth-footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.auth-footer-links a {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue2);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.auth-footer-links a:hover {
+    color: var(--red1);
+}
+
+/* ==========================================
+   RESPONSIVE - Teléfono Pequeño
+   ========================================== */
+@media (max-width: 968px) {
+    .auth-main {
+        flex-direction: column;
+    }
+    
+    .auth-left {
+        padding: 30px 20px;
+    }
+    
+    .auth-welcome-text h1 {
+        font-size: 28px;
+    }
+    
+    .auth-welcome-text h2 {
+        font-size: 18px;
+    }
+    
+    .auth-illustration {
+        max-width: 280px;
+    }
+    
+    .auth-right {
+        padding: 20px;
+    }
+    
+    .auth-form-card {
+        padding: 30px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-header {
+        padding: 10px 15px;
+    }
+    
+    .auth-logo {
+        width: 45px;
+        height: 44px;
+    }
+    
+    .auth-left {
+        padding: 20px 15px;
+    }
+    
+    .auth-welcome-text h1 {
+        font-size: 22px;
+    }
+    
+    .auth-welcome-text h2 {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+    
+    .auth-illustration {
+        max-width: 200px;
+        margin-bottom: 20px;
+    }
+    
+    .auth-right {
+        padding: 15px;
+    }
+    
+    .auth-form-card {
+        padding: 25px 20px;
+        border-radius: 15px;
+    }
+    
+    .auth-form-title {
+        font-size: 22px;
+    }
+    
+    .auth-input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .auth-submit-btn {
+        padding: 14px;
+        font-size: 14px;
+    }
+    
+    .auth-footer-links {
+        gap: 15px;
+    }
+    
+    .auth-footer-links a {
+        font-size: 11px;
+    }
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-form-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.auth-left {
+    animation: fadeInUp 0.6s ease-out;
+}

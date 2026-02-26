@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.schemas.user import UserCreate, UserResponse, UserRegister, UserListResponse, UserUpdate
 from app.databases.seccion import get_db
@@ -43,8 +43,19 @@ async def register_user_endpoint(
 ):
     """
     endpoint(url) para que usuarios normales se registren a sí mismos.
-    por defecto reciben el rol 'user'.
+    Solo se permite SIEMPRE Y CUANDO ya existe el admin seed creado.
+    Por defecto reciben el rol 'user'.
     """
+    # Verificar si ya existe el admin seed (al menos un usuario en el sistema)
+    from app.services.user_service import get_total_users
+    total_users = await get_total_users(db)
+    
+    if total_users == 0:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Primero debes crear el usuario administrador seed en /setup"
+        )
+    
     # crear usuario con rol "user" por defecto
     user_create = UserCreate(
         email=user_data.email,
