@@ -43,5 +43,3 @@ ENV/
 !alembic.ini
 !app/
 
-POSTMAN_DOCUMENTATION.md
-GUIA_PRUEBAS.md
