@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import authServices from "../../services/authServices";
 
@@ -37,6 +37,7 @@ const LoginPage = () => {
         <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
         <button type="submit">Inicio</button>
+        <p>¿No tiene cuenta? <Link to="/register">Registrarse</Link></p>
     </form>
 )
     

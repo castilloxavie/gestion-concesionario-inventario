@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/auth/LoginPage";
+import RegisterPage from "../pages/auth/RegisterPage";
+import SetupPage from "../pages/auth/SetupPage";
 
 
 const DashboardPage =  () => <h1>Pagina de Dashboard</h1>
@@ -10,13 +12,15 @@ export const AppRouter = () => {
     return (
         <Routes>
             {/*Ruta de autenticazion*/}
+            <Route path="/setup" element={<SetupPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+
 
             {/*Rutas principales*/}
             <Route path="/" element={<DashboardPage />} />
-            <Route path="/users" element={<UserSPages />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-             <Route path="users" element={<UserSPages />} />
+            <Route path="/users" element={<UserSPages />} />
 
             {/* Ruta no encontrada*/}
             <Route path="*" element={<NotFoundPage />} />
