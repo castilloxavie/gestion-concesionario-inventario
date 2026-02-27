@@ -25,6 +25,7 @@ ENV/
 .env
 # Ignora el archivo accidental que creaste con el comando de pip
 =2.0
+=41.0
 
 ### --- BASE DE DATOS LOCAL --- ###
 # Si usas SQLite localmente para pruebas
