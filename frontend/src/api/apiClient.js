@@ -1,11 +1,26 @@
 import axios from "axios"
 
-// URL base por defecto - siempre usamos HTTPS en producción
-const baseURL = import.meta.env.VITE_API_BASE_URL 
-    ? import.meta.env.VITE_API_BASE_URL 
-    : (import.meta.env.PROD 
-        ? "https://gestion-concesionario-inventario-production.up.railway.app/" 
-        : "http://localhost:8000/")
+// URL base - FORZAMOS HTTPS SIEMPRE en producción
+let baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/"
+
+// Asegurar que la URL termine con /
+if (!baseURL.endsWith('/')) {
+    baseURL += '/'
+}
+
+// FUERZA HTTPS en producción (detectar por el hostname de Vercel)
+const isProduction = window.location.hostname.includes('vercel.app');
+if (isProduction) {
+    // Reemplazar http:// por https:// si existe
+    if (baseURL.startsWith('http://')) {
+        baseURL = baseURL.replace('http://', 'https://');
+    }
+    // Si no tiene protocolo, agregar https://
+    if (!baseURL.startsWith('https://')) {
+        baseURL = 'https://' + baseURL;
+    }
+    console.log('🔧 Modo producción detectado, URL base:', baseURL);
+}
 
 const apliClient = axios.create({
     baseURL: baseURL,
