@@ -20,13 +20,26 @@ const apliClient = axios.create({
     }
 })
 
-// Interceptor para agregar el token automáticamente a todas las solicitudes
+// Interceptor para FORZAR HTTPS en todas las URLs
 apliClient.interceptors.request.use(
     (config) => {
+        // FUERZA HTTPS en la URL completa
+        if (config.url && config.url.startsWith('http://')) {
+            config.url = config.url.replace('http://', 'https://');
+        }
+        
+        // También forzamos la URL base si fuera necesario
+        if (config.baseURL && config.baseURL.startsWith('http://')) {
+            config.baseURL = config.baseURL.replace('http://', 'https://');
+        }
+        
+        // Agregar el token automáticamente
         const token = localStorage.getItem("token");
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
+        
+        console.log('📤 Request:', config.method?.toUpperCase(), config.baseURL + config.url);
         return config;
     },
     (error) => {
@@ -39,7 +52,6 @@ apliClient.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response?.status === 401) {
-            // Token expirado o inválido
             localStorage.removeItem("token");
             window.location.href = "/login";
         }
