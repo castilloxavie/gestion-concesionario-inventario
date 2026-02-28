@@ -4,11 +4,11 @@ import axios from "axios"
 // Detectar si estamos en producción (Vercel) o desarrollo local
 const isProduction = window.location.hostname.includes('vercel.app');
 
-// En producción: usar Railway con HTTPS
+// En producción: usar Railway con HTTPS (SIN trailing slash)
 // En desarrollo: usar localhost
 const baseURL = isProduction 
-    ? "https://gestion-concesionario-inventario-production.up.railway.app/" 
-    : "http://localhost:8000/";
+    ? "https://gestion-concesionario-inventario-production.up.railway.app" 
+    : "http://localhost:8000";
 
 console.log('🌐 Entorno:', isProduction ? 'PRODUCCIÓN' : 'DESARROLLO');
 console.log('🔗 URL Base:', baseURL);
