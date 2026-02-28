@@ -89,7 +89,7 @@ const authServices = {
     // Obtener todos los usuarios (solo admins)
     getAllUsers: async (token) => {
         try {
-            const response = await apliClient.get("/users", {
+            const response = await apliClient.get("/users/", {
                 headers: { 
                     Authorization: `Bearer ${token}` 
                 }
