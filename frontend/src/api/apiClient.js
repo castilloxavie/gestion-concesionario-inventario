@@ -1,7 +1,14 @@
 import axios from "axios"
 
+// URL base por defecto - siempre usamos HTTPS en producción
+const baseURL = import.meta.env.VITE_API_BASE_URL 
+    ? import.meta.env.VITE_API_BASE_URL 
+    : (import.meta.env.PROD 
+        ? "https://gestion-concesionario-inventario-production.up.railway.app/" 
+        : "http://localhost:8000/")
+
 const apliClient = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:8000",
+    baseURL: baseURL,
     headers: {
         "Content-Type": "application/json"
     }
